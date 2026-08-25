@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GYAN SPRINT | Premium Apps & Study Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        
+        body
+      
+      {
+        /* Background image par halka dark overlay lagane ke liye 'linear-gradient' ka use karein */
+background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://files.catbox.moe/t9yho3.jpg') no-repeat center center fixed;
+background-size: cover;
+background-color: #f5f5f5;
+color: #ffffff;
+min-height: 100vh;
+display: true; /* Yahan 'true' ki jagah 'flex' aayega */
+justify-content: center;
+align-items: flex-start;
+padding: 20px 12px;
+position: relative;
+overflow-x: hidden;
+}
+
+        
+    
+        
+        
+        {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+
+        /* Dark / Light Mode Customization */
+        body.light-mode {
+            background-color: #f8fafc;
+            color: #1f2937;
+        }
+        body.light-mode .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+        }
+        body.light-mode .text-gray-400 {
+            color: #4b5563 !important;
+        }
+        body.light-mode .text-white {
+            color: #111827 !important;
+        }
+        body.light-mode input {
+            background-color: #ffffff !important;
+            color: #111827 !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .dark-toggle {
+            background: rgba(30, 41, 59, 0.92);
+            border: 1px solid rgba(255,255,255,0.14);
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #34d399 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-btn {
+            background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%);
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="pb-28 max-w-md mx-auto relative shadow-2xl min-h-screen border-x border-white/10 app-shell">
+
+    <!-- DISCLAIMER FRONT OVERLAY PAGE -->
+    <div id="disclaimerOverlay" class="fixed inset-0 bg-[#0b0f19]/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-6 w-full max-w-sm text-center shadow-2xl border border-white/10 relative space-y-4 animate-in fade-in zoom-in duration-300">
+            
+            <div class="w-12 h-12 rounded-2xl gradient-btn mx-auto flex items-center justify-center text-white font-black text-xl shadow-lg shadow-indigo-500/30">
+                ⚠️
+            </div>
+
+            <div>
+                <h2 class="text-lg font-extrabold text-white tracking-wide mb-0.5">DISCLAIMER / अस्वीकरण</h2>
+                <span class="text-[10px] text-indigo-400 font-extrabold tracking-wider uppercase">GYAN SPRINT PLATFORM</span>
+            </div>
+
+            <!-- Hindi + English Disclaimer Content -->
+            <div class="bg-black/40 border border-white/5 rounded-2xl p-3 text-left text-[11px] text-gray-300 leading-relaxed space-y-2">
+                <div>
+                    <p class="text-lg font-extrabold text-white tracking-wide mb-0.5">🌹English:</p>
+                    <p>This app is created for educational and exam preparation purposes only. The information provided is intended to support students in their preparation. Please verify important information from official sources before relying on it. This app is not affiliated with or an official app of any government organization or examination board..</p>
+                </div>
+                <div class="border-t border-white/10 pt-2">
+                    <p class="text-lg font-extrabold text-white tracking-wide mb-0.5">🇮🇳 हिंदी:</p>
+                    <p>यह ऐप केवल Educational & Exam Preparation के उद्देश्य से बनाया गया है। यहाँ दी गई जानकारी विद्यार्थियों की तैयारी में सहायता के लिए है। किसी भी महत्वपूर्ण जानकारी को अंतिम मानने से पहले Official Source से अवश्य सत्यापित करें। यह ऐप किसी सरकारी संस्था या परीक्षा बोर्ड का आधिकारिक ऐप नहीं है।</p>
+                </div>
+            </div>
+
+            <!-- Telegram & Owner Contact Buttons -->
+            <div class="grid grid-cols-2 gap-2">
+                <a href="https://t.me/+UlYLt73QR0MxYzdl" target="_blank" class="py-2 px-2.5 rounded-xl bg-sky-500/20 border border-sky-500/30 text-sky-400 font-bold text-[11px] flex items-center justify-center space-x-1 hover:bg-sky-500/30 transition">
+                    <span>TELEGRAM</span>
+                </a>
+                <a href="https://t.me/RAO_SAHAB_JI_BOT" target="_blank" class="py-2 px-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold text-[11px] flex items-center justify-center space-x-1 hover:bg-emerald-500/30 transition">
+                    <span>OWNER CONTACT</span>
+                </a>
+            </div>
+
+            <!-- DEVELOPER & TEAMS TAG -->
+            <div class="bg-indigo-950/40 border border-indigo-500/20 rounded-xl p-2 text-center space-y-0.5">
+                <p class="text-[10px] font-bold text-indigo-300">DEVELOPER : 🌹:- 𓆩RAO𓆪𓆩SAHAB𓆪</p>
+                <p class="text-[10px] font-bold text-emerald-300">TEAMS : 🚸 :- GYAN SPRINT</p>
+            </div>
+
+            <!-- Agree & Continue Button -->
+            <button onclick="acceptDisclaimer()" class="w-full py-3 gradient-btn hover:opacity-90 text-white font-extrabold text-xs tracking-wider uppercase rounded-xl shadow-lg shadow-indigo-500/25 transition">
+                I Agree & Enter Platform
+            </button>
+        </div>
+    </div>
+
+
+    <!-- TELEGRAM JOIN PAGE -->
+    <div id="telegramOverlay" class="hidden fixed inset-0 bg-[#0b0f19]/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl p-6 w-full max-w-sm text-center shadow-2xl border border-indigo-500/20 space-y-5">
+            <div class="w-16 h-16 rounded-2xl mx-auto flex items-center justify-center bg-sky-500/20 border border-sky-500/30">
+                <svg class="w-8 h-8 text-sky-400" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M21.4 4.6c.3-1.1-.8-2-1.8-1.6L2.8 9.8c-1.2.5-1.2 2.2 0 2.7l4.4 1.6 1.7 5.4c.3 1 1.6 1.3 2.3.5l2.5-2.7 4.8 3.5c.9.7 2.2.2 2.5-.9L21.4 4.6zM9.1 13.6l7.9-5.8-6.3 7.1-.6 2-1-3.3z"/>
+                </svg>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-extrabold text-white">Join Our Telegram</h2>
+                <p class="text-[11px] text-indigo-400 font-bold tracking-wider uppercase mt-1">GYAN SPRINT • STUDY COMMUNITY</p>
+            </div>
+
+            <div class="bg-black/40 border border-white/5 rounded-2xl p-4 text-left">
+                <p class="text-sm font-bold text-white">📢 Get updates, study materials & important notifications</p>
+                <p class="text-xs text-gray-400 mt-2 leading-relaxed">
+                    Join the official Telegram community to receive educational updates, resources and new app announcements.
+                </p>
+            </div>
+
+            <a href="https://t.me/+UlYLt73QR0MxYzdl" target="_blank"
+               class="w-full py-3.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-extrabold text-sm flex items-center justify-center transition shadow-lg shadow-sky-500/20">
+                ✈️ JOIN TELEGRAM
+            </a>
+
+            <button onclick="enterPlatform()"
+                    class="w-full py-3 rounded-xl glass-card hover:bg-white/10 text-gray-300 font-bold text-xs transition">
+                Continue to GYAN SPRINT
+            </button>
+        </div>
+    </div>
+
+    <!-- Top Header -->
+    <header class="flex items-center justify-between px-4 py-3.5 glass-card border-x-0 border-t-0 sticky top-0 z-40">
+        <div class="flex items-center space-x-2.5">
+                      <!-- Logo Container with Image Link -->
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                <img src="https://files.catbox.moe/1wwjyz.jpg" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <div>
+                <span class="font-extrabold text-base tracking-wider gradient-text block leading-tight">GYAN SPRINT</span>
+                <span class="text-[10px] text-gray-400 font-medium">Premium Apps & Study</span>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3 text-gray-300">
+            <button aria-label="Share" onclick="sharePlatform()" class="w-9 h-9 rounded-xl glass-card flex items-center justify-center hover:bg-white/10 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+            </button>
+            <button aria-label="Dark mode" onclick="toggleDarkMode()" class="w-9 h-9 rounded-xl dark-toggle flex items-center justify-center hover:bg-white/10 transition" title="Dark Mode">
+                🌙
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="px-4 pt-5 space-y-6">
+
+        <!-- Hero Section -->
+        <section class="glass-card rounded-3xl p-6 text-center relative overflow-hidden shadow-2xl">
+            <div class="absolute -top-10 -right-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="inline-block px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold tracking-wider mb-4 shadow-sm">
+                ⚡ PREMIUM LEARNING PLATFORM
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3">
+                All Premium <span class="gradient-text">Education Apps</span>
+            </h1>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-6 px-1">
+                Access complete collection of premium educational applications in one secure platform. Beautiful design, seamless experience for modern learners.
+            </p>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 gap-3 pt-4 border-t border-white/10">
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/5">
+                    <h3 class="text-xl font-extrabold gradient-text">15+</h3>
+                    <p class="text-[11px] text-gray-400 mt-0.5 font-medium">Premium Apps</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/5">
+                    <h3 class="text-xl font-extrabold gradient-text">50K+</h3>
+                    <p class="text-[11px] text-gray-400 mt-0.5 font-medium">Active Users</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/5">
+                    <h3 class="text-xl font-extrabold gradient-text">24/7</h3>
+                    <p class="text-[11px] text-gray-400 mt-0.5 font-medium">Support</p>
+                </div>
+                <div class="p-3 rounded-2xl bg-white/5 border border-white/5">
+                    <h3 class="text-xl font-extrabold gradient-text">100%</h3>
+                    <p class="text-[11px] text-gray-400 mt-0.5 font-medium">Secure</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search & Filter Section -->
+        <section class="space-y-4">
+            <div class="relative">
+                <input id="appSearch" type="text" placeholder="Search apps..." oninput="filterApps()" class="w-full bg-slate-900/90 border border-white/10 rounded-2xl px-4 py-3.5 pl-11 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition shadow-inner">
+                <svg class="w-5 h-5 text-gray-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </div>
+
+            <!-- Filter Pills -->
+            <div id="filterPills" class="flex space-x-2 overflow-x-auto no-scrollbar pb-1">
+                <button data-filter="all" onclick="setFilter('all', this)" class="filter-btn px-4 py-2 rounded-xl gradient-btn text-xs font-bold text-white shadow-md whitespace-nowrap">All Apps</button>
+                <button data-filter="new" onclick="setFilter('new', this)" class="filter-btn px-4 py-2 rounded-xl glass-card text-xs font-medium text-gray-300 hover:text-white whitespace-nowrap transition">New</button>
+                <button data-filter="popular" onclick="setFilter('popular', this)" class="filter-btn px-4 py-2 rounded-xl glass-card text-xs font-medium text-gray-300 hover:text-white whitespace-nowrap transition">Popular</button>
+                <button data-filter="premium" onclick="setFilter('premium', this)" class="filter-btn px-4 py-2 rounded-xl glass-card text-xs font-medium text-gray-300 hover:text-white whitespace-nowrap transition">Premium</button>
+                <button data-filter="science" onclick="setFilter('science', this)" class="filter-btn px-4 py-2 rounded-xl glass-card text-xs font-medium text-gray-300 hover:text-white whitespace-nowrap transition">Science</button>
+                <button data-filter="exam" onclick="setFilter('exam', this)" class="filter-btn px-4 py-2 rounded-xl glass-card text-xs font-medium text-gray-300 hover:text-white whitespace-nowrap transition">Exam Prep</button>
+            </div>
+        </section>
+
+        <!-- Applications List Section -->
+        <section id="applicationsSection" class="space-y-4">
+            <div class="flex justify-between items-center">
+                <h2 class="text-base font-bold gradient-text">All Applications</h2>
+                <span class="text-xs px-2.5 py-1 rounded-lg glass-card text-gray-300 font-semibold">11 Apps</span>
+            </div>
+
+            <!-- Apps Stack -->
+            <div class="space-y-4">
+                
+        <!-- App: SELECTION WAY -->
+<div data-app-card data-categories="all popular exam" class="glass-card rounded-2xl p-4 relative">
+
+    <div class="flex items-start justify-between">
+
+        <div class="flex items-center space-x-3">
+
+            <!-- Selection Way Logo -->
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-md overflow-hidden">
+                <div class="text-center leading-none">
+                               <!-- Logo Container with Image Link -->
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYiM11Z0BtmGjrMRaVtJ3OqT5Z03_EhEDHQpQvZKhpuA&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+            </div>
+                
+                </div>
+            </div>
+
+            <!-- App Info -->
+            <div>
+                <h3 class="font-bold text-sm text-white">
+                    SELECTION WAY
+                </h3>
+
+                <p class="text-xs text-gray-400 mt-0.5">
+                    Government exam preparation platform
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Badge -->
+        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-wide">
+            POPULAR
+        </span>
+
+    </div>
+
+
+    <!-- App Stats -->
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+
+        <div class="bg-white/5 rounded-lg py-1.5">
+            <span class="text-gray-300 font-semibold">
+                Official
+            </span>
+        </div>
+
+        <div class="bg-white/5 rounded-lg py-1.5">
+            <span class="text-gray-300 font-semibold">
+                2M+
+            </span>
+        </div>
+
+        <div class="bg-white/5 rounded-lg py-1.5">
+            <span class="text-indigo-400 font-bold">
+                SSC • RAILWAY
+            </span>
+        </div>
+
+    </div>
+
+
+    <!-- Buttons -->
+    <div class="grid grid-cols-2 gap-2.5 mt-3">
+
+        <!-- Details -->
+        <button
+            onclick="openModal(
+                'SELECTION WAY',
+                'Government exam preparation platform',
+                'Official',
+                '2M+',
+                'SSC • RAILWAY',
+                'POPULAR'
+            )"
+            class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">
+
+            Details
+
+        </button>
+
+
+        <!-- Study Now -->
+        <button
+            onclick="window.open('https://brijesheditor.github.io/Website-/')"
+            class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">
+
+            Study Now
+
+        </button>
+
+    </div>
+
+</div>
+
+<!-- App: RG VIKRAMJEET with Image Logo Example -->
+<div data-app-card data-categories="all new science" class="glass-card rounded-2xl p-4 relative">
+    <div class="flex items-start justify-between">
+        <div class="flex items-center space-x-3">
+            
+            <!-- Logo Container with Image Link -->
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvpPDIhLQa9pfBaInjOqZgxFsWpDwSWghhJBmHFEti9w&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+            </div>
+
+            <div>
+                <h3 class="font-bold text-sm text-white">RG VIKRAMJEET</h3>
+                <p class="text-xs text-gray-400 mt-0.5">Complete science learning platform</p>
+            </div>
+        </div>
+        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-wide">NEW</span>
+    </div>
+
+    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v2.1</span></div>
+        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">2.5K+</span></div>
+        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN PRINT</span></div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-2.5 mt-3">
+        <button onclick="openModal('RG VIKRAMJEET', 'Complete science learning platform', 'v2.1', '2.5K+', 'GYAN PRINT', 'NEW')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+        <button onclick="window.open('https://rankersgurukul.com/')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+    </div>
+</div>
+
+                
+                <!-- App 1: RG VIKRAMJEET -->
+                <div data-app-card data-categories="all new science" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                             <!-- Logo Container with Image Link -->
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCFvhxybNgyZB2ctiSjQkoDvGk9KjyK-tG34NGXWwaRA&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+            </div>
+
+                            <div>
+                                <h3 class="font-bold text-sm text-white">GYAN BINDU</h3>
+                            
+                                <p class="text-xs text-gray-400 mt-0.5">Complete science learning platform</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-wide">NEW</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v2.1</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">2.5K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('RG VIKRAMJEET', 'Complete science learning platform', 'v2.1', '2.5K+', 'GYAN SPRINT', 'NEW')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://gyanbindu.co.in/')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 2: SCIENCE MAGNET -->
+                <div data-app-card data-categories="all new science" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                                                        <!-- Logo Container with Image Link -->
+                             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://files.catbox.moe/1wwjyz.jpg" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                            <div>
+                                <h3 class="font-bold text-sm text-white">SCIENCE MAGNET</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Complete science learning platform</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-wide">NEW</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v2.1</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">2.5K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('SCIENCE MAGNET', 'Complete science learning platform', 'v2.1', '2.5K+', 'GYAN SPRINT', 'NEW')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://sciencemagnet.classx.co.in/')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 3: PARMAR ACADEMY -->
+                <div data-app-card data-categories="all popular science" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                                                         <!-- Logo Container with Image Link -->
+                             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6trx3yEx7UhnCw4DUwnsKr_3plKssOOQJqsFJYeoT8g&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                            <div>
+                                <h3 class="font-bold text-sm text-white">PARMAR ACADEMY</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Premium mathematics and physics</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-bold tracking-wide">POPULAR</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v1.8</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">3.2K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('PARMAR ACADEMY', 'Premium mathematics and physics', 'v1.8', '3.2K+', 'GYAN SPRINT', 'POPULAR')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://www.parmaracademy.in/')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 4: UTKARSH -->
+                <div data-app-card data-categories="all premium exam" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                            
+                                                                                    <!-- Logo Container with Image Link -->
+                             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcAqaW-uebGcdojvgogzs1y4rpK3pOWdNiYXdwfZut5g&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                            
+                            
+                           
+                            <div>
+                                <h3 class="font-bold text-sm text-white">UTKARSH</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Competitive exam preparation</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-bold tracking-wide">PREMIUM</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v4.1</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">4.7K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('UTKARSH', 'Competitive exam preparation', 'v4.1', '4.7K+', 'GYAN SPRINT', 'PREMIUM')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://utkarsh.com/')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 5: UCLIVE - RANI MAM -->
+                <div data-app-card data-categories="all new science" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                                               <!-- Logo Container with Image Link -->
+                             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjQFzE88Af9DHlrohU46gwOJjlGc5mArzdO_5-dhai9g&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                            <div>
+                                <h3 class="font-bold text-sm text-white">UCLIVE - RANI MAM</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Chemistry mastery platform</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-wide">NEW</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v1.2</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">1.8K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('UCLIVE - RANI MAM', 'Chemistry mastery platform', 'v1.2', '1.8K+', 'GYAN SPRINT', 'NEW')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://uclive.org/test-series')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 6: KDLIVE -->
+                <div data-app-card data-categories="all premium exam" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                                               <!-- Logo Container with Image Link -->
+                             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHLFtm5hTstP0U5TxO3L87EdCgaiYZGI9NGU_KFVMj2A&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                            <div>
+                                <h3 class="font-bold text-sm text-white">KDLIVE</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Competitive exam preparation</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-bold tracking-wide">PREMIUM</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v3.1</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">4.1K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('KDLIVE', 'Competitive exam preparation', 'v3.1', '4.1K+', 'GYAN SPRINT', 'PREMIUM')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://kdcampus.live/course/index?batch_type=1&cat_type=1&cat_type=0&submit=submit')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 7: KHAN GLOBAL STUDIES -->
+                <div data-app-card data-categories="all popular exam" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                             <!-- Logo Container with Image Link -->
+            <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREKDmcV-Z0RVf6IH1tntVQUQoZFGGi-I_7DD-RkKkjHA&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+            </div>
+                            <div>
+                                <h3 class="font-bold text-sm text-white">KHAN GLOBAL STUDIES</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Social studies comprehensive</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-bold tracking-wide">POPULAR</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v3.0</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">5.2K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('KHAN GLOBAL STUDIES', 'Social studies comprehensive', 'v3.0', '5.2K+', 'GYAN SPRINT', 'POPULAR')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://sahukgs.vercel.app')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 8: CDS JOURNEY -->
+                <div data-app-card data-categories="all premium exam" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                                              <!-- Logo Container with Image Link -->
+                             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThqXntpr-81lD21flFCQKpyrRHcHOhEeEIA3_6VrEx-Q&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                            <div>
+                                <h3 class="font-bold text-sm text-white">CDS JOURNEY</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Defense services preparation</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-bold tracking-wide">PREMIUM</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v2.5</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">2.1K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('CDS JOURNEY', 'Defense services preparation', 'v2.5', '2.1K+', 'GYAN SPRINT', 'PREMIUM')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://www.cdsjourney.com/')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 9: Rojgar With Ankit -->
+                <div data-app-card data-categories="all new exam" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                                              <!-- Logo Container with Image Link -->
+                             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_OQLeRYk3mFHIU-0UbI0rHASLDZWFzkjkppvfHwCu8_JyID8ivzdSvnVj&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                            <div>
+                                <h3 class="font-bold text-sm text-white">Rojgar With Ankit</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Government job preparation</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-bold tracking-wide">NEW</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v1.0</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">8.4K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('Rojgar With Ankit', 'Government job preparation', 'v1.0', '8.4K+', 'GYAN SPRINT', 'NEW')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://rojgarwithankit.co.in/')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+                <!-- App 10: CAREER WILL -->
+                <div data-app-card data-categories="all popular exam" class="glass-card rounded-2xl p-4 relative">
+                    <div class="flex items-start justify-between">
+                        <div class="flex items-center space-x-3">
+                                             <!-- Logo Container with Image Link -->
+                             <div class="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmYE_faasYwfAs0rQKDf4GcuoV7_Ws6ZUqWwmIpuHVSw&s" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                            <div>
+                                <h3 class="font-bold text-sm text-white">CAREER WILL</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Career guidance platform</p>
+                            </div>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-400 text-[10px] font-bold tracking-wide">POPULAR</span>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/5 text-[11px] text-gray-400 text-center">
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">v1.1</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-gray-300 font-semibold">6.3K+</span></div>
+                        <div class="bg-white/5 rounded-lg py-1.5"><span class="text-indigo-400 font-bold">GYAN SPRINT</span></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2.5 mt-3">
+                        <button onclick="openModal('CAREER WILL', 'Career guidance platform', 'v1.1', '6.3K+', 'GYAN SPRINT', 'POPULAR')" class="py-2.5 rounded-xl glass-card text-xs font-semibold text-gray-300 hover:bg-white/10 transition">Details</button>
+                        <button onclick="window.open('https://careerwill.com/courses')" class="py-2.5 rounded-xl gradient-btn text-xs font-bold text-white shadow-lg shadow-indigo-500/20">Study Now</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- Future Apps Section -->
+        <section id="futureSection" class="space-y-4 pt-2">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-extrabold gradient-text">Future Apps</h2>
+                <span class="text-[10px] px-2.5 py-1 rounded-lg glass-card text-gray-400">COMING SOON</span>
+            </div>
+
+            <div class="grid grid-cols-1 gap-3">
+                <div class="glass-card rounded-2xl p-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-sm text-white">GyanSprint Test Series</h3>
+                        <p class="text-xs text-gray-400 mt-1">Upcoming mock tests & performance analytics</p>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 text-[10px] font-bold">SOON</span>
+                </div>
+                <div class="glass-card rounded-2xl p-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-bold text-sm text-white">GyanSprint Notes</h3>
+                        <p class="text-xs text-gray-400 mt-1">Organized notes, PDFs & revision tools</p>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 text-[10px] font-bold">SOON</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Account Section -->
+        <section id="accountSection" class="space-y-4 pt-2">
+            <h2 class="text-lg font-extrabold gradient-text">Account</h2>
+            <div class="glass-card rounded-2xl p-5">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-xl gradient-btn flex items-center justify-center text-white font-black">GS</div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Student Account</h3>
+                        <p class="text-xs text-gray-400 mt-1">Login & profile features can be connected here.</p>
+                    </div>
+                </div>
+                <button onclick="showAccountMessage()" class="w-full mt-4 py-2.5 rounded-xl dark-toggle text-xs font-bold text-white hover:bg-white/10 transition">
+                    Manage Account
+                </button>
+            </div>
+        </section>
+
+        <!-- Developer Profile Section -->
+        <section id="developerSection" class="space-y-4 pt-2">
+            <h2 class="text-lg font-extrabold gradient-text">Developer Profile</h2>
+            <div class="glass-card rounded-3xl p-5 text-center">
+                                                           <!-- Logo Container with Image Link -->
+                                                           <center
+                             <div class="w-16 h-16 rounded-xl bg-white flex items-center justify-center p-1 shadow-md overflow-hidden">
+                                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHMaG9ppXYnnNOgOtCpCiGlPkBFLiI4uu1AN43GwkkLQ&s=10" alt="RG Vikramjeet Logo" class="w-full h-full object-cover rounded-lg">
+                             </div>
+                <h3 class="font-extrabold text-white mt-3">𓆩RAO𓆪 𓆩SAHAB𓆪</h3>
+                <p class="text-xs text-indigo-300 font-semibold mt-1">Developer • GYAN SPRINT</p>
+                <p class="text-xs text-gray-400 leading-relaxed mt-3">
+                    Educational platform developer focused on building useful tools for students and competitive-exam learners.
+                </p>
+                <a href="https://t.me/RAO_SAHAB_JI_BOT" target="_blank" class="inline-flex mt-4 px-5 py-2.5 rounded-xl gradient-btn text-xs font-bold text-white">
+                    Contact Developer
+                </a>
+            </div>
+        </section>
+
+        <!-- Why GYAN SPRINT Section -->
+        <section class="space-y-4 pt-2">
+            <h2 class="text-lg font-extrabold gradient-text text-center">Why GYAN SPRINT</h2>
+            
+            <div class="grid grid-cols-1 gap-3">
+                <div class="glass-card rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl gradient-btn flex items-center justify-center text-white shrink-0 shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Lightning Fast</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">Optimized for speed with instant loading and seamless performance.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl gradient-btn flex items-center justify-center text-white shrink-0 shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Secure Access</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">Safe and secure access to all premium educational content.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl gradient-btn flex items-center justify-center text-white shrink-0 shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">Always Updated</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">Regular updates with new features and improvements.</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-4 flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-xl gradient-btn flex items-center justify-center text-white shrink-0 shadow-md">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-sm text-white">24/7 Support</h3>
+                        <p class="text-xs text-gray-400 mt-0.5">Round-the-clock support for all your queries.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Info & Footer Links -->
+        <footer class="glass-card rounded-3xl p-6 space-y-5 text-center mt-6 border border-white/10">
+            <div>
+                <h3 class="font-extrabold text-base gradient-text mb-1">GYAN SPRINT</h3>
+                <p class="text-xs text-gray-400 px-2 leading-relaxed">
+                    Premium educational platform with beautiful design and seamless experience. Access all premium learning apps in one place.
+                </p>
+            </div>
+
+            <!-- Developer & Teams Tag in Footer -->
+            <div class="bg-indigo-950/40 border border-indigo-500/20 rounded-xl p-2.5 space-y-1">
+                <p class="text-[11px] font-bold text-indigo-300">DEVELOPER : 🌹:- 𓆩RAO𓆪𓆩SAHAB𓆪</p>
+                <p class="text-[11px] font-bold text-emerald-300">TEAMS : 🚸 :- GYAN SPRINT</p>
+            </div>
+
+            <!-- Social/Brand Icons grid -->
+            <div class="flex justify-center space-x-3">
+                <div class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-emerald-400 font-bold text-xs">🌹</div>
+                <div class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-indigo-400 font-bold text-xs">RAO</div>
+                <div class="w-12 h-9 rounded-xl glass-card flex items-center justify-center text-emerald-400 font-bold text-xs">SAHAB</div>
+                <div class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-cyan-400 font-bold text-xs">JI</div>
+                <div class="w-9 h-9 rounded-xl glass-card flex items-center justify-center text-purple-400 font-bold text-xs">🌹</div>
+            </div>
+    
+            <div class="pt-4 border-t border-white/10 text-[10px] text-gray-400 space-y-1">
+                <p>&copy; 2026 GYAN SPRINT. All rights reserved. | Premium Educational Platform</p>
+                <p class="text-indigo-300">Secure Platform • Mobile & PC Optimized</p>
+            </div>
+            
+        </footer>
+
+    </main>
+
+    <!-- Details Modal Pop-up (Hidden by default) -->
+    <div id="detailsModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card bg-[#161d30]/90 border border-white/10 rounded-3xl w-full max-w-sm p-6 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            
+            <!-- Close Button -->
+            <button onclick="closeModal()" aria-label="Close details modal" class="absolute top-4 right-4 text-gray-400 hover:text-white glass-card p-2 rounded-xl text-xs transition">
+                ✕
+            </button>
+
+            <!-- Modal Content Headers -->
+            <h2 id="modalTitle" class="text-xl font-extrabold text-white tracking-wide mb-1"></h2>
+            <p id="modalSubtitle" class="text-xs text-gray-400 mb-6"></p>
+
+            <!-- Details Box -->
+            <div class="bg-black/30 border border-white/5 rounded-2xl p-4 space-y-3 mb-6">
+                <div class="flex justify-between text-xs">
+                    <span class="text-gray-400">Version:</span>
+                    <span id="modalVersion" class="font-bold text-white"></span>
+                </div>
+                <div class="flex justify-between text-xs">
+                    <span class="text-gray-400">Active Users:</span>
+                    <span id="modalUsers" class="font-bold text-white"></span>
+                </div>
+                <div class="flex justify-between text-xs">
+                    <span class="text-gray-400">Platform Author:</span>
+                    <span id="modalAuthor" class="font-bold text-indigo-400"></span>
+                </div>
+                <div class="flex justify-between text-xs">
+                    <span class="text-gray-400">Badge Status:</span>
+                    <span id="modalStatus" class="font-bold"></span>
+                </div>
+            </div>
+
+            <!-- Launch App Action Button -->
+            <button class="w-full py-3.5 gradient-btn hover:opacity-90 text-white font-bold text-sm rounded-xl shadow-lg shadow-indigo-500/25 transition text-center">
+                Launch Application
+            </button>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
+    <nav aria-label="Bottom Navigation" class="fixed bottom-0 left-0 right-0 max-w-md mx-auto glass-card border-x-0 border-b-0 py-2.5 px-4 flex justify-around items-center z-40 shadow-2xl backdrop-blur-xl">
+        <a href="#" class="flex flex-col items-center text-indigo-400 group">
+            <svg class="w-5 h-5 transition transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+            <span class="text-[10px] mt-1 font-semibold">Home</span>
+        </a>
+        <a href="#applicationsSection" class="flex flex-col items-center text-gray-400 hover:text-indigo-400 transition group">
+            <svg class="w-5 h-5 transition transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+            <span class="text-[10px] mt-1 font-medium">Apps</span>
+        </a>
+        <a href="#futureSection" class="flex flex-col items-center text-gray-400 hover:text-indigo-400 transition group">
+            <svg class="w-5 h-5 transition transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+            <span class="text-[10px] mt-1 font-medium">Future</span>
+        </a>
+        <a href="#accountSection" class="flex flex-col items-center text-gray-400 hover:text-indigo-400 transition group">
+            <svg class="w-5 h-5 transition transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+            <span class="text-[10px] mt-1 font-medium">Account</span>
+        </a>
+        <a href="#developerSection" class="flex flex-col items-center text-gray-400 hover:text-indigo-400 transition group">
+            <svg class="w-5 h-5 transition transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"></path></svg>
+            <span class="text-[10px] mt-1 font-medium">Developer</span>
+        </a>
+    </nav>
+
+    <!-- Script Logic -->
+    <script>
+        // Accept Disclaimer and hide overlay
+        function acceptDisclaimer() {
+            document.getElementById('disclaimerOverlay').classList.add('hidden');
+            document.getElementById('telegramOverlay').classList.remove('hidden');
+        }
+
+        function enterPlatform() {
+            document.getElementById('telegramOverlay').classList.add('hidden');
+        }
+
+        // App Details Modal Logic
+        function openModal(title, subtitle, version, users, author, status) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalSubtitle').innerText = subtitle;
+            document.getElementById('modalVersion').innerText = version;
+            document.getElementById('modalUsers').innerText = users;
+            document.getElementById('modalAuthor').innerText = author;
+            
+            const statusEl = document.getElementById('modalStatus');
+            statusEl.innerText = status;
+            if(status === 'POPULAR') {
+                statusEl.className = "font-bold text-amber-400";
+            } else if(status === 'NEW') {
+                statusEl.className = "font-bold text-emerald-400";
+            } else {
+                statusEl.className = "font-bold text-purple-400";
+            }
+
+            document.getElementById('detailsModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('detailsModal').classList.add('hidden');
+        }
+
+
+        // Search + category filtering
+        let activeFilter = 'all';
+
+        function setFilter(filter, button) {
+            activeFilter = filter;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('gradient-btn', 'font-bold', 'text-white', 'shadow-md');
+                btn.classList.add('glass-card', 'font-medium', 'text-gray-300');
+            });
+            button.classList.remove('glass-card', 'font-medium', 'text-gray-300');
+            button.classList.add('gradient-btn', 'font-bold', 'text-white', 'shadow-md');
+            filterApps();
+        }
+
+        function filterApps() {
+            const query = (document.getElementById('appSearch')?.value || '').trim().toLowerCase();
+            document.querySelectorAll('[data-app-card]').forEach(card => {
+                const categories = (card.dataset.categories || '').toLowerCase();
+                const text = card.innerText.toLowerCase();
+                const matchesFilter = activeFilter === 'all' || categories.includes(activeFilter);
+                const matchesSearch = !query || text.includes(query);
+                card.style.display = matchesFilter && matchesSearch ? '' : 'none';
+            });
+        }
+
+        // Dark mode button fix
+        function toggleDarkMode() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            localStorage.setItem('gyanPrintLight', isLight ? '1' : '0');
+        }
+
+        if (localStorage.getItem('gyanPrintLight') === '1') {
+            document.body.classList.add('light-mode');
+        }
+
+        // Share button
+        async function sharePlatform() {
+            const shareData = {
+                title: 'GYAN SPRINT | Premium Apps & Study Platform',
+                text: 'Explore premium educational apps on GYAN SPRINT.',
+                url: window.location.href
+            };
+
+            try {
+                if (navigator.share) {
+                    await navigator.share(shareData);
+                } else if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Share link copied!');
+                } else {
+                    prompt('Copy this share link:', window.location.href);
+                }
+            } catch (error) {
+                // User cancelled the native share sheet.
+            }
+        }
+
+        function showAccountMessage() {
+            alert('Account section ready — connect your login/profile system here.');
+        }
+    </script>
+</body>
+</html>
