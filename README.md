@@ -1,1 +1,2 @@
-# ALL-APPX-GYAN-SPRINT-
+# ALL-APPX-GYAN-SPRINT
+this is a educational app 
