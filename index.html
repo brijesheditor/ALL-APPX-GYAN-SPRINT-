@@ -88,6 +88,348 @@ overflow-x: hidden;
 </head>
 <body class="pb-28 max-w-md mx-auto relative shadow-2xl min-h-screen border-x border-white/10 app-shell">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+<div id="loader-wrapper">
+  <canvas id="webgl-canvas"></canvas>
+
+  <div id="loader-screen">
+    <div class="loader-content">
+      
+      <div class="rings-wrapper">
+        <svg class="rings-svg" viewBox="0 0 160 160">
+          <circle class="bg-ring" cx="80" cy="80" r="69"></circle>
+          <circle class="progress-ring" id="outer-progress" cx="80" cy="80" r="69"></circle>
+
+          <circle class="bg-ring" cx="80" cy="80" r="52"></circle>
+          <circle class="middle-ring" cx="80" cy="80" r="52"></circle>
+
+          <circle class="bg-ring" cx="80" cy="80" r="35"></circle>
+          <circle class="inner-ring" cx="80" cy="80" r="35"></circle>
+        </svg>
+
+        <div class="center-val-box">
+          <span class="center-percent" id="percent-val">0%</span>
+          <span class="status-text">INITIALIZING</span>
+        </div>
+      </div>
+
+      <h2 class="brand-name">🌹GYAN SPRINT 🌹<span>𓆩RAO𓆪𓆩SAHAB𓆪</span></h2>
+      <p class="brand-tagline">WELCOME TO GYAN SPRINT WEB APPS </p>
+      
+    </div>
+  </div>
+</div>
+
+<style>
+  #loader-wrapper {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background-color: #030406;
+    overflow: hidden;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  }
+
+  #webgl-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+  }
+
+  #loader-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, rgba(3, 4, 6, 0.3) 0%, rgba(3, 4, 6, 0.85) 100%);
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+
+  .loader-content {
+    text-align: center;
+    padding: 30px;
+    max-width: 380px;
+    width: 90%;
+  }
+
+  .rings-wrapper {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rings-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+
+  .bg-ring {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 4;
+  }
+
+  .progress-ring {
+    fill: none;
+    stroke: #ff6b00;
+    stroke-width: 5;
+    stroke-dasharray: 433.5;
+    stroke-dashoffset: 433.5;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 12px rgba(255, 107, 0, 0.9));
+    transition: stroke-dashoffset 0.1s linear;
+  }
+
+  .middle-ring {
+    fill: none;
+    stroke: #00f0ff;
+    stroke-width: 3.5;
+    stroke-dasharray: 326.7;
+    stroke-dashoffset: 180;
+    stroke-linecap: round;
+    transform-origin: center;
+    animation: spinLeft 1.8s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.7));
+  }
+
+  .inner-ring {
+    fill: none;
+    stroke: #ffb700;
+    stroke-width: 3;
+    stroke-dasharray: 219.9;
+    stroke-dashoffset: 100;
+    stroke-linecap: round;
+    transform-origin: center;
+    animation: spinRight 1s linear infinite;
+    filter: drop-shadow(0 0 8px rgba(255, 183, 0, 0.7));
+  }
+
+  .center-val-box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .center-percent {
+    font-size: 28px;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 16px rgba(255, 107, 0, 0.6);
+  }
+
+  .status-text {
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #00f0ff;
+    font-weight: 700;
+    margin-top: 2px;
+    text-transform: uppercase;
+    animation: blink 1.2s infinite alternate;
+  }
+
+  .brand-name {
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    color: #ffffff;
+  }
+
+  .brand-name span {
+    color: #ff6b00;
+    text-shadow: 0 0 15px rgba(255, 107, 0, 0.5);
+  }
+
+  .brand-tagline {
+    font-size: 11px;
+    color: #8f95a5;
+    margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  @keyframes spinLeft {
+    0% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  @keyframes spinRight {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @keyframes blink {
+    0% { opacity: 0.4; }
+    100% { opacity: 1; }
+  }
+</style>
+
+<script>
+  (function init3DLoaderScene() {
+    const canvas = document.getElementById('webgl-canvas');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x030406, 0.045);
+
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+    const ambientLight = new THREE.AmbientLight(0x101420, 1.2);
+    scene.add(ambientLight);
+
+    const orangeSpotlight = new THREE.SpotLight(0xff6b00, 4, 40, Math.PI / 4, 0.5);
+    orangeSpotlight.position.set(5, 12, 8);
+    scene.add(orangeSpotlight);
+
+    const rimLight = new THREE.DirectionalLight(0x00d2ff, 1.5);
+    rimLight.position.set(-8, 5, -5);
+    scene.add(rimLight);
+
+    const environmentGroup = new THREE.Group();
+    const steelMaterial = new THREE.MeshStandardMaterial({ color: 0x3a3f4d, metalness: 0.85, roughness: 0.25 });
+    const shutteringMaterial = new THREE.MeshStandardMaterial({ color: 0xff6b00, metalness: 0.6, roughness: 0.3 });
+
+    for (let x = -10; x <= 10; x += 4) {
+      for (let z = -12; z <= 4; z += 4) {
+        const pillarGeo = new THREE.CylinderGeometry(0.08, 0.08, 14, 8);
+        const pillar = new THREE.Mesh(pillarGeo, steelMaterial);
+        pillar.position.set(x, 0, z);
+        environmentGroup.add(pillar);
+
+        if (Math.random() > 0.4) {
+          const plateGeo = new THREE.BoxGeometry(3.6, 0.08, 3.6);
+          const plate = new THREE.Mesh(plateGeo, shutteringMaterial);
+          plate.position.set(x, (Math.floor(Math.random() * 3) - 1) * 3, z);
+          environmentGroup.add(plate);
+        }
+      }
+    }
+    scene.add(environmentGroup);
+
+    const iconGroup = new THREE.Group();
+    const frameGeo = new THREE.BoxGeometry(2.4, 2.4, 0.2);
+    const frameMat = new THREE.MeshStandardMaterial({ color: 0xff6b00, metalness: 0.9, roughness: 0.2, emissive: 0xff4500, emissiveIntensity: 0.15 });
+    const iconFrame = new THREE.Mesh(frameGeo, frameMat);
+    iconGroup.add(iconFrame);
+
+    for (let i = -0.8; i <= 0.8; i += 0.8) {
+      const barV = new THREE.Mesh(new THREE.BoxGeometry(0.12, 2.2, 0.25), steelMaterial);
+      barV.position.x = i;
+      iconGroup.add(barV);
+
+      const barH = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.12, 0.25), steelMaterial);
+      barH.position.y = i;
+      iconGroup.add(barH);
+    }
+
+    iconGroup.position.set(0, 0, 3.5);
+    scene.add(iconGroup);
+
+    const particleCount = 450;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePos = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount * 3; i += 3) {
+      particlePos[i] = (Math.random() - 0.5) * 20;
+      particlePos[i + 1] = (Math.random() - 0.5) * 15;
+      particlePos[i + 2] = (Math.random() - 0.5) * 20;
+    }
+
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePos, 3));
+    const particleMat = new THREE.PointsMaterial({ color: 0xff6b00, size: 0.08, transparent: true, opacity: 0.7 });
+    const dustParticles = new THREE.Points(particleGeo, particleMat);
+    scene.add(dustParticles);
+
+    camera.position.set(0, 0, 8.5);
+
+    let clock = new THREE.Clock();
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const elapsedTime = clock.getElapsedTime();
+
+      iconGroup.rotation.y = elapsedTime * 0.7;
+      iconGroup.rotation.x = Math.sin(elapsedTime * 0.5) * 0.15;
+      camera.position.x = Math.sin(elapsedTime * 0.3) * 0.3;
+      camera.position.y = Math.cos(elapsedTime * 0.4) * 0.2;
+      dustParticles.rotation.y = elapsedTime * 0.03;
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    window.loader3D = { camera, canvas };
+  })();
+
+  // 10 Seconds Progress Logic
+  window.addEventListener("DOMContentLoaded", () => {
+    let progress = 0;
+    const progressRing = document.getElementById("outer-progress");
+    const percentVal = document.getElementById("percent-val");
+    const loaderWrapper = document.getElementById("loader-wrapper");
+    const loaderScreen = document.getElementById("loader-screen");
+    const maxOffset = 433.5;
+
+    // 100ms * 100 steps = Exact 10 Seconds (10000ms)
+    const timer = setInterval(() => {
+      progress += 1;
+      if (progress > 100) progress = 100;
+
+      const offset = maxOffset - (progress / 100) * maxOffset;
+      progressRing.style.strokeDashoffset = offset;
+      percentVal.innerText = progress + "%";
+
+      if (progress === 100) {
+        clearInterval(timer);
+
+        setTimeout(() => {
+          if (window.loader3D) {
+            window.loader3D.camera.position.z = 4.5;
+            window.loader3D.canvas.style.opacity = "0";
+          }
+
+          loaderScreen.style.opacity = "0";
+          loaderScreen.style.visibility = "hidden";
+
+          setTimeout(() => {
+            loaderWrapper.remove(); // Removes full loader overlay to reveal main page
+          }, 800);
+
+        }, 400);
+      }
+    }, 100); 
+  });
+</script>
+    
+
     <!-- DISCLAIMER FRONT OVERLAY PAGE -->
     <div id="disclaimerOverlay" class="fixed inset-0 bg-[#0b0f19]/95 backdrop-blur-xl z-50 flex items-center justify-center p-4">
         <div class="glass-card rounded-3xl p-6 w-full max-w-sm text-center shadow-2xl border border-white/10 relative space-y-4 animate-in fade-in zoom-in duration-300">
